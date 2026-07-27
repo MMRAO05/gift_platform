@@ -6,9 +6,9 @@ from django.utils import timezone
 
 
 def generate_short_code():
-    """Generate a random short code (10-13 characters) with letters, numbers, and special symbols."""
-    chars = string.ascii_letters + string.digits + "!@#$%"
-    length = random.randint(10, 13)
+    """Generate a random short code (10-15 characters) with numbers only."""
+    chars = string.digits
+    length = random.randint(10, 15)
     return ''.join(random.choice(chars) for _ in range(length))
 
 
@@ -21,7 +21,7 @@ class BaseGift(models.Model):
     behaves identically everywhere.
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    short_code = models.CharField(max_length=13, unique=True, blank=True, null=True)
+    short_code = models.CharField(max_length=15, unique=True, blank=True, null=True)
 
     sender_name = models.CharField(max_length=150, blank=True)
     recipient_name = models.CharField(max_length=150, blank=True)
