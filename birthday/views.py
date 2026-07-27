@@ -21,15 +21,15 @@ class SaveGiftAPIView(BaseSaveGiftAPIView):
 
 
 class RevealSeedView(View):
-    """/birthday/g/<uuid>/  — window.__PRESET__ has to exist on the SAME
+    """/birthday/g/<short_code>/  — window.__PRESET__ has to exist on the SAME
     page load as the main script (it's an in-memory JS global, it can't
     survive a redirect), so unlike the other styles this renders
     page.html directly with the gift JSON injected."""
 
-    def get(self, request, gift_id):
+    def get(self, request, short_code):
         from django.shortcuts import get_object_or_404
         from django.http import Http404
-        gift = get_object_or_404(Gift, pk=gift_id)
+        gift = get_object_or_404(Gift, short_code=short_code)
         if gift.is_expired or not gift.is_active:
             raise Http404("This gift link has expired.")
         gift.register_view()

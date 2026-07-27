@@ -1017,10 +1017,10 @@
 
                 <div class="btn-group">
                     <button class="btn btn-primary" id="previewBtn">👀 Preview</button>
-                    <button class="btn btn-primary" id="btnExport">📤 Export HTML</button>
-                    <!-- <button class="btn btn-gold" id="createLinkBtn">✦ Create Link</button> -->
+                    <!-- <button class="btn btn-primary" id="btnExport">📤 Export HTML</button> -->
+                    <button class="btn btn-gold" id="createLinkBtn">✦ Create Link</button>
                 </div>
-                <div class="ghost-hint">⚠️ Export HTML file to share — works on all devices! Link sharing only works on same browser.</div>
+                <div class="ghost-hint">✨ Create a shareable link to send your gift!</div>
             </div>
         </div>
 
@@ -2000,9 +2000,9 @@
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(state)
           }).then(function(r) { return r.json(); }).then(function(data) {
-            if (data && data.id) {
+            if (data && data.short_code) {
               var input = document.getElementById('shareLinkInput');
-              if (input) input.value = window.location.origin + '/' + STYLE_SLUG + '/g/' + data.id + '/';
+              if (input) input.value = window.location.origin + '/' + STYLE_SLUG + '/g/' + data.short_code + '/';
             }
           }).catch(function(e) { console.warn('Backend save failed, using local link.', e); });
         } catch (e) { console.warn('Backend bridge error', e); }

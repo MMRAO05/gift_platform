@@ -39,7 +39,8 @@ class BaseSaveGiftAPIView(View):
         return JsonResponse({
             "success": True,
             "id": str(gift.id),
-            "url": request.build_absolute_uri(f"/{self.style_slug}/g/{gift.id}/"),
+            "short_code": gift.short_code,
+            "url": request.build_absolute_uri(f"/{self.style_slug}/g/{gift.short_code}/"),
         })
 
 

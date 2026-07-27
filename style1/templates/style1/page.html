@@ -1183,9 +1183,9 @@
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(state)
           }).then(function(r) { return r.json(); }).then(function(data) {
-            if (data && data.id) {
+            if (data && data.short_code) {
               var input = document.getElementById('shareLinkInput');
-              if (input) input.value = window.location.origin + '/' + STYLE_SLUG + '/g/' + data.id + '/';
+              if (input) input.value = window.location.origin + '/' + STYLE_SLUG + '/g/' + data.short_code + '/';
             }
           }).catch(function(e) { console.warn('Backend save failed, using local link.', e); });
         } catch (e) { console.warn('Backend bridge error', e); }

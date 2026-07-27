@@ -21,15 +21,15 @@ class SaveGiftAPIView(BaseSaveGiftAPIView):
 
 
 class RevealSeedView(View):
-    """/style1/g/<uuid>/  — looks the gift up, then serves a tiny page
+    """/style1/g/<short_code>/  — looks the gift up, then serves a tiny page
     that re-creates the EXACT url format (query) the original page
     already knows how to load from, so the real page code (unchanged)
     takes it from there."""
 
-    def get(self, request, gift_id):
+    def get(self, request, short_code):
         from django.shortcuts import get_object_or_404
         from django.http import Http404
-        gift = get_object_or_404(Gift, pk=gift_id)
+        gift = get_object_or_404(Gift, short_code=short_code)
         if gift.is_expired or not gift.is_active:
             raise Http404("This gift link has expired.")
         gift.register_view()

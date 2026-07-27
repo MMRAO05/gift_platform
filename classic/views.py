@@ -50,7 +50,11 @@ class GiftAPIView(View):
             passkey=str(payload.get("passkey", "8274"))[:8],
             data=payload,
         )
-        return JsonResponse({"success": True, "giftId": str(gift.id)})
+        return JsonResponse({
+            "success": True,
+            "giftId": str(gift.id),
+            "short_code": gift.short_code,
+        })
 
     def _retrieve(self, request, gift_id):
         gift = get_object_or_404(Gift, pk=gift_id)

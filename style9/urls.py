@@ -5,7 +5,7 @@ app_name = "style9"
 
 urlpatterns = [
     path("", views.CreatePageView.as_view(), name="create"),
-    path("g/<uuid:gift_id>/", views.RevealSeedView.as_view(), name="reveal"),
+    path("g/<str:short_code>/", views.RevealSeedView.as_view(), name="reveal"),
 ]
 
 api_urlpatterns = [

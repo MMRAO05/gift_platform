@@ -1,6 +1,15 @@
 import uuid
+import random
+import string
 from django.db import models
 from django.utils import timezone
+
+
+def generate_short_code():
+    """Generate a random short code (10-13 characters) with letters, numbers, and special symbols."""
+    chars = string.ascii_letters + string.digits + "!@#$%"
+    length = random.randint(10, 13)
+    return ''.join(random.choice(chars) for _ in range(length))
 
 
 class BaseGift(models.Model):
@@ -12,6 +21,7 @@ class BaseGift(models.Model):
     behaves identically everywhere.
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    short_code = models.CharField(max_length=13, unique=True, blank=True, null=True)
 
     sender_name = models.CharField(max_length=150, blank=True)
     recipient_name = models.CharField(max_length=150, blank=True)
@@ -43,3 +53,11 @@ class BaseGift(models.Model):
 
     def register_view(self):
         type(self).objects.filter(pk=self.pk).update(view_count=models.F("view_count") + 1)
+
+    def save(self, *args, **kwargs):
+        if not self.short_code:
+            self.short_code = generate_short_code()
+            # Ensure uniqueness
+            while type(self).objects.filter(short_code=self.short_code).exists():
+                self.short_code = generate_short_code()
+        super().save(*args, **kwargs)
