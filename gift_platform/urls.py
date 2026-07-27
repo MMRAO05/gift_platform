@@ -1,5 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 
 STYLES = ["style1", "style2", "style3", "style4", "style5", "style6", "style7",
           "style8", "style9", "birthday"]
@@ -25,3 +27,7 @@ for i in range(1, 10):
     urlpatterns += [
         path(f'{i}.html', include((f'{slug}.urls', slug), namespace=slug)),
     ]
+urlpatterns += static(
+    settings.MEDIA_URL,
+    document_root=settings.MEDIA_ROOT
+)

@@ -36,7 +36,7 @@ ALLOWED_HOSTS = [
 
 INSTALLED_APPS = [
     "jazzmin",
-
+    "accounts",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -140,13 +140,19 @@ STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-#Jazzmin settings
+#Media 
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
 JAZZMIN_SETTINGS = {
     "site_title": "Gift Platform",
-    "site_header": "Gift Platform",
+    "site_header": "Gift Platform Admin",
     "site_brand": "Gift Platform",
     "welcome_sign": "Welcome to Gift Platform Dashboard",
     "copyright": "© MMRAO05",
+
+    "show_ui_builder": True,
+
+    "user_avatar": "accounts.Profile.image",
 
     "show_sidebar": True,
     "navigation_expanded": True,
