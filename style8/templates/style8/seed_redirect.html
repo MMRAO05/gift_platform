@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html><head><meta charset='UTF-8'></head><body>
+<script>
+  var GIFT = {{ gift_json|safe }};
+  var GID = "{{ gift_id }}";
+  try {
+    localStorage.setItem('eclipse_v7_' + GID, JSON.stringify(GIFT));
+    var idsKey = 'eclipse_v7_ids';
+    var ids = [];
+    try { ids = JSON.parse(localStorage.getItem(idsKey) || '[]'); } catch (e) {}
+    if (ids.indexOf(GID) === -1) ids.push(GID);
+    localStorage.setItem(idsKey, JSON.stringify(ids));
+  } catch (e) {}
+  window.location.replace('/style8/?id=' + GID);
+</script>
+</body></html>

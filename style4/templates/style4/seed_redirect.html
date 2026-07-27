@@ -1,0 +1,8 @@
+<!DOCTYPE html>
+<html><head><meta charset='UTF-8'></head><body>
+<script>
+  var GIFT = {{ gift_json|safe }};
+  var target = '/style4/#' + encodeURIComponent(JSON.stringify(GIFT));
+  window.location.replace(target);
+</script>
+</body></html>
