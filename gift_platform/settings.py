@@ -35,35 +35,39 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'core',
-    'classic',
-    'style1',
-    'style2',
-    'style3',
-    'style4',
-    'style5',
-    'style6',
-    'style7',
-    'style8',
-    'style9',
-    'birthday',
-    'jazzmin',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
+    "jazzmin",
+
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+
+    "core",
+    "classic",
+    "style1",
+    "style2",
+    "style3",
+    "style4",
+    "style5",
+    "style6",
+    "style7",
+    "style8",
+    "style9",
+    "birthday",
 ]
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
 ROOT_URLCONF = 'gift_platform.urls'
@@ -131,4 +135,37 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = "static/"
+
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+#Jazzmin settings
+JAZZMIN_SETTINGS = {
+    "site_title": "Gift Platform",
+    "site_header": "Gift Platform",
+    "site_brand": "Gift Platform",
+    "welcome_sign": "Welcome to Gift Platform Dashboard",
+    "copyright": "© MMRAO05",
+
+    "show_sidebar": True,
+    "navigation_expanded": True,
+
+    "icons": {
+        "auth.user": "fas fa-user",
+        "auth.group": "fas fa-users",
+
+        "birthday.birthdaygift": "fas fa-gift",
+        "classic.classicgift": "fas fa-heart",
+
+        "style1.style1gift": "fas fa-palette",
+        "style2.style2gift": "fas fa-palette",
+        "style3.style3gift": "fas fa-palette",
+        "style4.style4gift": "fas fa-palette",
+        "style5.style5gift": "fas fa-palette",
+        "style6.style6gift": "fas fa-palette",
+        "style7.style7gift": "fas fa-palette",
+        "style8.style8gift": "fas fa-palette",
+        "style9.style9gift": "fas fa-palette",
+    },
+}
