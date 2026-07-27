@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'style8',
     'style9',
     'birthday',
+    'jazzmin',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
